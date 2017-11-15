@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AuctionCalc</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="submit">Calculate</string>
+    <string name="sales_price_fee">Sales Price Fee: </string>
+    <string name="internet_fee">Internet Fee: </string>
+    <string name="load_fee">Load Fee: </string>
+    <string name="taxes_text">Taxes: </string>
+    <string name="total_cost">Total Cost: </string>
+    <string name="location">Location</string>
+    <string name="bid_amount">Bid Amount</string>
+    <string name="title">Title</string>
+    <string name="share">Share</string>
+</resources>

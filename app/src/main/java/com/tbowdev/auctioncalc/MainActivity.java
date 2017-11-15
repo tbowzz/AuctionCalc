@@ -20,8 +20,6 @@ import android.widget.TextView;
 
 import java.text.NumberFormat;
 
-import static com.tbowdev.auctioncalc.TaxCalculator.BOISE;
-
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "MainActivity";
@@ -50,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mTitleText = (EditText) findViewById(R.id.input_title);
         mTitleText.setVisibility(View.GONE);
         mMaxBidText = (EditText) findViewById(R.id.input_maxbid);
-        AppCompatSpinner locationSpinner = (AppCompatSpinner) findViewById(R.id.location_spinner);
 
+        AppCompatSpinner locationSpinner = (AppCompatSpinner) findViewById(R.id.location_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.spinner_item, Model.instance.getLocations());
+                R.layout.spinner_item, Model.INSTANCE.getLocations());
         adapter.setDropDownViewResource(R.layout.spinner_item);
         locationSpinner.setAdapter(adapter);
         locationSpinner.setOnItemSelectedListener(this);
-        mLocation = BOISE;
+        mLocation = TaxCalculator.INSTANCE.getBOISE();
 
         mIsCalculated = false;
 
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mIsCalculated = true;
                 double bidPrice = Double.parseDouble(mMaxBidText.getText().toString());
                 String title = mTitleText.getText().toString();
-                VehicleCost vehicleCost = Model.instance.calculateCost(title, bidPrice, mLocation);
+                VehicleCost vehicleCost = Model.INSTANCE.calculateCost(title, bidPrice, mLocation);
                 updateResults(vehicleCost);
             }
         });
@@ -138,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Log.d(TAG, "onItemSelected: " + position);
-        mLocation = Model.instance.getLocations().get(position);
+        mLocation = Model.INSTANCE.getLocations().get(position);
     }
 
     @Override
